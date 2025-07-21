@@ -72,6 +72,24 @@
         background: #fff;
         margin-right: 0.5rem;
       }
+      &.status-in_transit {
+        background: #2196F3;
+      }
+      &.status-delivered {
+        background: #4CAF50;
+      }
+      &.status-delayed {
+        background: #F44336;
+      }
+      .status-dot.status-in_transit {
+        background: #2196F3;
+      }
+      .status-dot.status-delivered {
+        background: #4CAF50;
+      }
+      .status-dot.status-delayed {
+        background: #F44336;
+      }
     }
   }
 

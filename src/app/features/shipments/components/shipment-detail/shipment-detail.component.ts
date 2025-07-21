@@ -52,9 +52,4 @@ export class ShipmentDetailComponent implements OnInit {
       },
     });
   }
-
-  // Get status color from the service
-  getStatusColor(status: string): string {
-    return this.shipmentService.getShipmentStatusColor(status as keyof typeof SHIPMENT_STATUSES);
-  }
 }

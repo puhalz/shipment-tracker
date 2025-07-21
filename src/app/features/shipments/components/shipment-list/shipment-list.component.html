@@ -31,7 +31,7 @@
     >
       <div class="card-header">
         <div class="shipment-id">
-          <span class="status-dot" [style.backgroundColor]="getStatusColor(shipment.status)"></span>
+          <span class="status-dot" [ngClass]="'status-' + shipment.status.toLowerCase()"></span>
           {{ shipment.id }}
         </div>
         <div class="container-number">
@@ -42,12 +42,12 @@
       <div class="card-content">
         <div class="route-info">
           <div class="origin">
-            <span class="location-icon">📍</span>
+            <span class="location-icon"></span>
             {{ shipment.origin }}
           </div>
           <div class="arrow">→</div>
           <div class="destination">
-            <span class="location-icon">📍</span>
+            <span class="location-icon"></span>
             {{ shipment.destination }}
           </div>
         </div>
@@ -56,16 +56,14 @@
           <!-- Status label overlay -->
           <div
             class="status-label"
-            [style.background-color]="getStatusColor(shipment.status) + '20'"
-            [style.color]="getStatusColor(shipment.status)"
-            [style.borderColor]="getStatusColor(shipment.status)"
+            [ngClass]="'status-' + shipment.status.toLowerCase()"
           >
             {{ shipment.status | titlecase }}
           </div>
           <div class="current-location" *ngIf="shipment.currentLocation">
-            <span class="location-icon">📍</span>
-            {{ shipment.currentLocation }}
-          </div>
+  <span class="location-icon"></span>
+  {{ shipment.currentLocation }}
+</div>
         </div>
 
         <div class="dates">

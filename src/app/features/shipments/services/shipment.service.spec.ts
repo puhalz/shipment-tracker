@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { ShipmentService } from './shipment.service';
-import { SHIPMENT_STATUSES, SHIPMENT_STATUS_COLORS, mockShipments } from '../data/shipments.data';
+import { SHIPMENT_STATUSES, mockShipments } from '../data/shipments.data';
 
 describe('ShipmentService', () => {
   let service: ShipmentService;
@@ -23,7 +23,7 @@ describe('ShipmentService', () => {
 
   it('should get shipment by id', (done) => {
     const id = mockShipments[0].id;
-    service.getShipmentById(id).subscribe((shipment) => {
+    service.getShipmentById(id).subscribe((shipment: any) => {
       expect(shipment?.id).toBe(id);
       done();
     });
@@ -37,9 +37,5 @@ describe('ShipmentService', () => {
     });
   });
 
-  it('should get status color', () => {
-    expect(service.getShipmentStatusColor('IN_TRANSIT')).toBe(
-      SHIPMENT_STATUS_COLORS[SHIPMENT_STATUSES.IN_TRANSIT],
-    );
-  });
+
 });

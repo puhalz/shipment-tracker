@@ -56,9 +56,4 @@ export class ShipmentListComponent implements OnInit {
       },
     });
   }
-
-  // Public method to get status color for the template
-  getStatusColor(status: string): string {
-    return this.shipmentService.getShipmentStatusColor(status as keyof typeof SHIPMENT_STATUSES);
-  }
 }

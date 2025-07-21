@@ -8,8 +8,8 @@
     <h1>Shipment Details</h1>
     <div class="shipment-id">Shipment #{{ shipment.id }}</div>
 
-    <div class="status-badge" [style.background-color]="getStatusColor(shipment.status)">
-      <span class="status-dot"></span>
+    <div class="status-badge" [ngClass]="'status-' + shipment.status.toLowerCase()">
+      <span class="status-dot" [ngClass]="'status-' + shipment.status.toLowerCase()"></span>
       {{ shipment.status | titlecase }}
     </div>
   </div>

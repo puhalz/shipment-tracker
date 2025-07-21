@@ -12,11 +12,10 @@ describe('ShipmentListComponent', () => {
     shipmentServiceSpy = jasmine.createSpyObj('ShipmentService', [
       'getAllShipments',
       'searchShipments',
-      'getShipmentStatusColor',
     ]);
     shipmentServiceSpy.getAllShipments.and.returnValue(of([]));
     shipmentServiceSpy.searchShipments.and.returnValue(of([]));
-    shipmentServiceSpy.getShipmentStatusColor.and.returnValue('#2196F3');
+    
     await TestBed.configureTestingModule({
       imports: [ShipmentListComponent],
       providers: [{ provide: ShipmentService, useValue: shipmentServiceSpy }],

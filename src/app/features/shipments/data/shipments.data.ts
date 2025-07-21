@@ -6,11 +6,6 @@ export const SHIPMENT_STATUSES = {
   DELAYED: 'DELAYED',
 } as const;
 
-export const SHIPMENT_STATUS_COLORS = {
-  [SHIPMENT_STATUSES.IN_TRANSIT]: '#2196F3', // Blue
-  [SHIPMENT_STATUSES.DELIVERED]: '#4CAF50', // Green
-  [SHIPMENT_STATUSES.DELAYED]: '#F44336', // Red
-} as const;
 
 export const mockShipments: Shipment[] = [
   {
