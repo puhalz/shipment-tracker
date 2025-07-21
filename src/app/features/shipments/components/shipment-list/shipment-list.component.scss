@@ -1,0 +1,198 @@
+.shipment-list-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.search-bar {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+
+  .search-input {
+    width: 100%;
+    max-width: 500px;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition:
+      box-shadow 0.2s,
+      border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #3f51b5;
+      box-shadow: 0 0 0 3px rgba(63, 81, 181, 0.2);
+    }
+  }
+}
+
+.shipments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 0 2rem 0;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.shipment-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(63, 81, 181, 0.15);
+    border-color: #c5cae9;
+  }
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  .shipment-id {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    color: #3f51b5;
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 0.5rem;
+    }
+  }
+
+  .container-number {
+    font-size: 0.9rem;
+    color: #666;
+  }
+}
+
+.card-content {
+  .route-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+
+    .origin,
+    .destination {
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+      color: #555;
+
+      .location-icon {
+        margin-right: 0.4rem;
+      }
+    }
+
+    .arrow {
+      font-size: 1.2rem;
+      color: #888;
+    }
+  }
+
+  .status-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .status-label {
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid;
+      text-transform: capitalize;
+    }
+
+    .current-location {
+      display: flex;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #555;
+
+      .location-icon {
+        margin-right: 0.4rem;
+      }
+    }
+  }
+
+  .dates {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #777;
+
+    .date-label {
+      font-weight: 500;
+    }
+
+    .date-value {
+      margin-left: 0.3rem;
+    }
+  }
+}
+
+.loading,
+.error,
+.no-results {
+  text-align: center;
+  margin: 2rem 0;
+  color: #666;
+
+  .spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid #c5cae9;
+    border-top: 3px solid #3f51b5;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem auto;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .retry-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #3f51b5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #303f9f;
+    }
+  }
+}

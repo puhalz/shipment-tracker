@@ -1,0 +1,102 @@
+<div class="shipment-detail" *ngIf="!loading && !error && shipment">
+  <a routerLink="/shipments" class="back-link">
+    <span class="back-arrow">←</span>
+    Back to Shipments
+  </a>
+
+  <div class="shipment-header">
+    <h1>Shipment Details</h1>
+    <div class="shipment-id">Shipment #{{ shipment.id }}</div>
+
+    <div class="status-badge" [style.background-color]="getStatusColor(shipment.status)">
+      <span class="status-dot"></span>
+      {{ shipment.status | titlecase }}
+    </div>
+  </div>
+
+  <div class="shipment-card">
+    <h2 class="section-title">Shipment Information</h2>
+
+    <div class="shipment-info">
+      <div class="info-group">
+        <h3>Origin</h3>
+        <p>{{ shipment.origin }}</p>
+      </div>
+
+      <div class="info-group">
+        <h3>Destination</h3>
+        <p>{{ shipment.destination }}</p>
+      </div>
+
+      <div class="info-group">
+        <h3>Departure Date</h3>
+        <p>{{ shipment.departureDate | date: 'mediumDate' }}</p>
+      </div>
+
+      <div class="info-group">
+        <h3>Estimated Arrival</h3>
+        <p>{{ shipment.estimatedArrivalDate | date: 'mediumDate' }}</p>
+      </div>
+
+      <div class="info-group">
+        <h3>Container Number</h3>
+        <p>{{ shipment.containerNumber }}</p>
+      </div>
+
+      <div class="info-group" *ngIf="shipment.carrier">
+        <h3>Carrier</h3>
+        <p>{{ shipment.carrier }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="shipment-card" *ngIf="shipment.history?.length">
+    <h2 class="section-title">Shipment History</h2>
+
+    <div class="timeline">
+      <div
+        class="timeline-item"
+        *ngFor="let event of shipment.history; let i = index"
+        [class.completed]="event.completed"
+      >
+        <div
+          class="timeline-status-icon"
+          [ngStyle]="{
+            'background-color': event.completed
+              ? '#4caf50'
+              : event.status === 'DELAYED'
+                ? '#f44336'
+                : '#1976d2',
+          }"
+        >
+          <ng-container *ngIf="event.completed; else dotIcon">
+            <span class="timeline-check">✔</span>
+          </ng-container>
+          <ng-template #dotIcon>
+            <span class="timeline-dot"></span>
+          </ng-template>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-header">
+            <h4>{{ event.status | titlecase }}</h4>
+            <span class="timeline-date">{{ event.timestamp | date: 'medium' }}</span>
+          </div>
+          <div class="timeline-details">
+            <span *ngIf="event.location" class="timeline-location">{{ event.location }}</span>
+            <span *ngIf="event.notes" class="timeline-notes">{{ event.notes }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+  <div class="spinner"></div>
+  <p>Loading shipment details...</p>
+</div>
+
+<div class="error" *ngIf="error">
+  <p>{{ error }}</p>
+  <button (click)="loadShipment(shipment?.id || '')" class="retry-button">Retry</button>
+</div>

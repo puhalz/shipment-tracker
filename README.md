@@ -1,6 +1,30 @@
 # ShipmentTracker
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.15.
+Shipment Tracker is a modular Angular application that demonstrates best practices in scalable web app architecture and code quality.
+
+---
+
+## Project Structure (v2)
+
+The project is organized using a modular folder structure for maintainability and scalability:
+
+- `core/` — Application-wide singletons, interceptors, and core services
+- `shared/` — Shared UI components and utilities
+- `features/` — Feature modules (e.g. Shipments, About)
+- `layouts/` — Layout and shell components
+- `models/` — Shared models and interfaces
+- `utils/` — Pure helper functions and utilities
+- `assets/` — Static assets
+
+Each feature (e.g. shipments, about) is encapsulated in its own folder under `features/` with components, services, data, and models grouped together. Shared components are placed in `shared/components` for reuse.
+
+---
+
+## About Page
+
+For a detailed overview of the modular architecture, code quality practices, and developer commands (lint, format, test, pre-commit hooks), see the in-app **About** page at `/about` or `src/app/features/about/about.component.html`.
+
+---
 
 ## Development server
 

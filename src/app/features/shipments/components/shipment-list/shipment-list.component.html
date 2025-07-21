@@ -1,0 +1,84 @@
+<div class="shipment-list-container">
+  <div class="search-bar">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch(searchQuery)"
+      placeholder="Search by Shipment ID or Container Number..."
+      class="search-input"
+    />
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading shipments...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadShipments()" class="retry-button">Retry</button>
+  </div>
+
+  <div *ngIf="!loading && !error && filteredShipments.length === 0" class="no-results">
+    <p>No shipments found. Try adjusting your search.</p>
+  </div>
+
+  <div class="shipments-grid">
+    <div
+      *ngFor="let shipment of filteredShipments"
+      class="shipment-card"
+      [routerLink]="['/shipments', shipment.id]"
+    >
+      <div class="card-header">
+        <div class="shipment-id">
+          <span class="status-dot" [style.backgroundColor]="getStatusColor(shipment.status)"></span>
+          {{ shipment.id }}
+        </div>
+        <div class="container-number">
+          {{ shipment.containerNumber }}
+        </div>
+      </div>
+
+      <div class="card-content">
+        <div class="route-info">
+          <div class="origin">
+            <span class="location-icon">📍</span>
+            {{ shipment.origin }}
+          </div>
+          <div class="arrow">→</div>
+          <div class="destination">
+            <span class="location-icon">📍</span>
+            {{ shipment.destination }}
+          </div>
+        </div>
+
+        <div class="status-info">
+          <!-- Status label overlay -->
+          <div
+            class="status-label"
+            [style.background-color]="getStatusColor(shipment.status) + '20'"
+            [style.color]="getStatusColor(shipment.status)"
+            [style.borderColor]="getStatusColor(shipment.status)"
+          >
+            {{ shipment.status | titlecase }}
+          </div>
+          <div class="current-location" *ngIf="shipment.currentLocation">
+            <span class="location-icon">📍</span>
+            {{ shipment.currentLocation }}
+          </div>
+        </div>
+
+        <div class="dates">
+          <div class="departure">
+            <span class="date-label">Departure:</span>
+            <span class="date-value">{{ shipment.departureDate | date: 'mediumDate' }}</span>
+          </div>
+          <div class="arrival">
+            <span class="date-label">Est. Arrival:</span>
+            <span class="date-value">{{ shipment.estimatedArrivalDate | date: 'mediumDate' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
