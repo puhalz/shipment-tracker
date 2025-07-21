@@ -58,7 +58,12 @@
       margin-right: 0.5rem;
       user-select: none;
       &::before {
-        content: '\1F6A2'; /* 🚢 */
+        content: "";
+        display: inline-block;
+        width: 2.2rem;
+        height: 2.2rem;
+        background: url('/assets/images/ship.png') center/contain no-repeat;
+        margin-left: -2.5rem;
       }
     }
     .title-group {
